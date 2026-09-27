@@ -1,0 +1,59 @@
+.app-layout {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background-color: #f7f9fb;
+}
+
+.main-content {
+	flex: 1;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+	.main-content {
+		padding: 0 1rem;
+	}
+}
+
+#root {
+	background: url("./assets/W1.jpg") center / cover no-repeat;
+}
+
+.home-container,
+.apply-page-container {
+	background:
+		linear-gradient(rgba(247, 250, 248, 0.78), rgba(247, 250, 248, 0.78)),
+		url("./assets/W1.jpg") center / cover no-repeat;
+}
+
+.login-page {
+	background:
+		linear-gradient(rgba(247, 250, 248, 0.78), rgba(247, 250, 248, 0.78)),
+		url("./assets/W2.jpg") center / cover no-repeat;
+}
+
+.track-page-container,
+.dashboard-shell {
+	background:
+		linear-gradient(rgba(247, 250, 248, 0.78), rgba(247, 250, 248, 0.78)),
+		url("./assets/W3.jpg") center / cover no-repeat;
+}
+
+.detail-page {
+	background:
+		linear-gradient(rgba(247, 250, 248, 0.78), rgba(247, 250, 248, 0.78)),
+		url("./assets/W4.jpg") center / cover no-repeat;
+}
+
+.dashboard-shell-v2,
+.dashboard-main-view {
+	background:
+		linear-gradient(rgba(247, 250, 248, 0.78), rgba(247, 250, 248, 0.78)),
+		url("./assets/W4.jpg") center / cover no-repeat;
+}
+
+.manager-page-container {
+	background: transparent;
+}

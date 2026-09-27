@@ -1,0 +1,82 @@
+.form-field-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-field-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155; /* Dark slate */
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.required-asterisk {
+  color: #ef4444; /* Alert red */
+  margin-left: 0.25rem;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  color: #0f172a;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.form-control::placeholder {
+  color: #94a3b8;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #00d2ff;
+  box-shadow: 0 0 0 4px rgba(0, 210, 255, 0.15);
+}
+
+/* Specific text area styling */
+textarea.form-control {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.5;
+}
+
+/* Custom Select Dropdown Styling */
+.select-wrapper {
+  position: relative;
+}
+
+.form-select {
+  appearance: none; /* Removes default browser styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 2.5rem; /* Makes room for the custom arrow */
+  cursor: pointer;
+}
+
+/* Custom dropdown arrow */
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #64748b;
+  pointer-events: none; /* Ensures clicks pass through to the select element */
+}
+
+.select-wrapper:focus-within::after {
+  border-top-color: #00d2ff;
+}

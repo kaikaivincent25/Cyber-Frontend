@@ -1,0 +1,75 @@
+/* 
+  Define the color tokens globally so the inline styles can read them. 
+  You can place these in your tokens.css if you prefer centralized variables. 
+*/
+:root {
+  /* Pending - Neutral green-gray */
+  --status-pending-bg: #edf3ef;
+  --status-pending-text: #53685b;
+  --status-pending-dot: #82958a;
+  
+  /* Assigned - Informational Blue */
+  --status-assigned-bg: #e8f4fc;
+  --status-assigned-text: #17658f;
+  --status-assigned-dot: #368bb8;
+  
+  /* In Progress - Active blue */
+  --status-in_progress-bg: #e8f1fb;
+  --status-in_progress-text: #265d8c;
+  --status-in_progress-dot: #4287bd;
+  
+  /* Awaiting Payment - Attention Amber */
+  --status-awaiting_payment-bg: #fef3c7;
+  --status-awaiting_payment-text: #b45309;
+  --status-awaiting_payment-dot: #d18a1b;
+  
+  /* Completed - Success Green */
+  --status-completed-bg: #dcfce7;
+  --status-completed-text: #15803d;
+  --status-completed-dot: #1e9a58;
+  
+  /* Cancelled - Alert Red */
+  --status-cancelled-bg: #fee2e2;
+  --status-cancelled-text: #b91c1c;
+  --status-cancelled-dot: #d2554a;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 28px;
+  box-sizing: border-box;
+  padding: 0.35rem 0.7rem;
+  border-radius: 9999px; /* Gives it that modern 'pill' look */
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  
+  /* Fallback defaults in case a variable is missing */
+  background: var(--status-pending-bg);
+  color: var(--status-pending-text);
+}
+
+.status-badge-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  flex: 0 0 0.42rem;
+  background: var(--status-pending-dot);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.42);
+}
+
+.status-assigned .status-badge-dot { background: var(--status-assigned-dot); }
+.status-in_progress .status-badge-dot { background: var(--status-in_progress-dot); }
+.status-awaiting_payment .status-badge-dot { background: var(--status-awaiting_payment-dot); }
+.status-completed .status-badge-dot { background: var(--status-completed-dot); }
+.status-cancelled .status-badge-dot { background: var(--status-cancelled-dot); }
+
+@media (prefers-reduced-motion: reduce) {
+  .status-badge-dot {
+    transition: none;
+  }
+}

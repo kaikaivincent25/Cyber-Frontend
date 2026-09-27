@@ -1,0 +1,436 @@
+.track-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.track-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.track-hero h1 {
+  font-size: 2.5rem;
+  color: #1a1a1a;
+  margin-bottom: 1rem;
+}
+
+.track-hero p {
+  color: #666;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.track-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+  padding: 2.5rem;
+}
+
+.search-wrapper {
+  display: flex;
+  gap: 1rem;
+}
+
+.search-wrapper input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: 2px solid #eee;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  transition: border-color 0.3s;
+}
+
+.search-wrapper input:focus {
+  outline: none;
+  border-color: #00d2ff;
+}
+
+.search-wrapper button {
+  background: #1a1a1a;
+  color: white;
+  border: none;
+  padding: 0 2rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.search-wrapper button:hover:not(:disabled) {
+  background: #00d2ff;
+  color: #1a1a1a;
+}
+
+.track-error {
+  color: #e74c3c;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.status-results {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.status-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+/* Example status colors */
+.status-pending { background: #fff3cd; color: #856404; }
+.status-in_progress { background: #cce5ff; color: #004085; }
+.status-completed { background: #d4edda; color: #155724; }
+
+.status-details-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.status-details-list li {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.status-details-list li strong {
+  display: block;
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+/* Current track-request layout */
+.track-page-container {
+  min-height: 100vh;
+  padding: 1.5rem 1.25rem 4rem;
+  color: #17211b;
+  background: radial-gradient(circle at 12% 8%, rgba(19, 128, 78, 0.13), transparent 28rem), linear-gradient(145deg, #f6fbf8 0%, #f7f9fc 52%, #eef6f1 100%);
+}
+
+.track-nav,
+.track-card {
+  width: min(100%, 920px);
+  margin-inline: auto;
+}
+
+.track-nav {
+  margin-bottom: 2.25rem;
+}
+
+.link-back {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+  padding: 0.55rem 0;
+  color: #426052;
+  background: transparent;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.link-back:hover {
+  color: #087443;
+}
+
+.track-card {
+  box-sizing: border-box;
+  padding: clamp(1.5rem, 4vw, 3.25rem);
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(210, 225, 216, 0.9);
+  border-radius: 24px;
+  box-shadow: 0 24px 70px rgba(35, 73, 52, 0.1);
+}
+
+.track-header {
+  max-width: 620px;
+  margin-bottom: 2rem;
+}
+
+.track-header::before {
+  content: "REQUEST SUPPORT";
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  color: #087443;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.track-title {
+  margin: 0;
+  color: #14251b;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.track-subtitle {
+  max-width: 540px;
+  margin: 1rem 0 0;
+  color: #607267;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.track-form {
+  padding: 1.25rem;
+  background: #f5faf7;
+  border: 1px solid #e0eee5;
+  border-radius: 16px;
+}
+
+.track-form::after {
+  content: "Your tracking code was included in the confirmation message after you applied.";
+  display: block;
+  margin-top: 0.8rem;
+  color: #819087;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.form-field-label {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: #263b2e;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.track-input-wrapper {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.track-input {
+  min-width: 0;
+  flex: 1;
+  box-sizing: border-box;
+  padding: 0.9rem 1rem;
+  color: #17211b;
+  background: #ffffff;
+  border: 1px solid #cbdcd1;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.track-input::placeholder {
+  color: #9aaba0;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.track-input:focus {
+  outline: none;
+  border-color: #087443;
+  box-shadow: 0 0 0 4px rgba(8, 116, 67, 0.12);
+}
+
+.btn-primary-action,
+.btn-pay-now {
+  border: 0;
+  border-radius: 10px;
+  color: #ffffff;
+  background: #087443;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.btn-primary-action {
+  flex: 0 0 auto;
+  padding: 0.9rem 1.25rem;
+}
+
+.btn-primary-action:hover:not(:disabled),
+.btn-pay-now:hover {
+  background: #065b35;
+  box-shadow: 0 8px 18px rgba(8, 116, 67, 0.2);
+  transform: translateY(-1px);
+}
+
+.btn-primary-action:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.alert-error {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  color: #8f2f25;
+  background: #fff4f2;
+  border: 1px solid #f4d2cd;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.result-card {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e5ece7;
+  animation: track-result-in 220ms ease-out;
+}
+
+@keyframes track-result-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.result-header h3 {
+  margin: 0;
+  color: #17211b;
+  font-size: 1.35rem;
+}
+
+.result-header h3::before {
+  content: "STATUS UPDATE";
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #087443;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.7rem;
+  color: #17623e;
+  background: #e6f5ec;
+  border: 1px solid #c7e8d4;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: right;
+}
+
+.status-pending { color: #8b5d00; background: #fff7df; border-color: #f4dfaa; }
+.status-assigned, .status-in_progress { color: #155b8a; background: #e8f4fc; border-color: #c8e4f6; }
+.status-awaiting_payment { color: #824d0b; background: #fff0dc; border-color: #f1d0a3; }
+.status-completed { color: #17623e; background: #e6f5ec; border-color: #c7e8d4; }
+.status-cancelled { color: #8f2f25; background: #fff0ee; border-color: #f1cfca; }
+
+.fee-card {
+  padding: 1.15rem 1.25rem;
+  background: #fbfcfb;
+  border: 1px solid #e4ebe6;
+  border-radius: 14px;
+}
+
+.fee-card-title {
+  margin: 0 0 0.85rem;
+  color: #263b2e;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.fee-breakdown {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.fee-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: #607267;
+  font-size: 0.92rem;
+}
+
+.fee-row-total {
+  margin-top: 0.25rem;
+  padding-top: 0.85rem;
+  color: #17211b;
+  border-top: 1px solid #e4ebe6;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.track-chat-section {
+  margin-top: 2rem !important;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5ece7;
+}
+
+.track-chat-section > div {
+  height: 400px;
+  margin-top: 0.75rem !important;
+  overflow: hidden;
+  border: 1px solid #e4ebe6;
+  border-radius: 14px;
+}
+
+.btn-pay-now {
+  width: 100%;
+  margin-top: 1.25rem;
+  padding: 0.95rem 1.25rem;
+}
+
+.btn-pay-now::before {
+  content: "";
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin: 0 0.45rem 0.08rem 0;
+  background: #f4b942;
+  border-radius: 50%;
+}
+
+@media (max-width: 560px) {
+  .track-page-container { padding: 1rem 0.85rem 2.5rem; }
+  .track-nav { margin-bottom: 1.25rem; }
+  .track-card { border-radius: 18px; }
+  .track-input-wrapper { flex-direction: column; }
+  .btn-primary-action { width: 100%; }
+  .result-header { flex-direction: column; }
+  .status-badge { text-align: left; }
+  .track-chat-section > div { height: 360px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track-input,
+  .btn-primary-action,
+  .btn-pay-now,
+  .result-card { transition: none; animation: none; }
+}
