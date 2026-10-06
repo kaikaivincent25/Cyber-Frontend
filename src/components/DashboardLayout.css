@@ -10,7 +10,7 @@
 
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   color: var(--shell-ink);
   background:
@@ -213,7 +213,7 @@
 @media (max-width: 768px) {
   .dashboard-shell-v2 {
     flex-direction: column;
-    height: 100svh;
+    height: 100dvh;
   }
 
   .dashboard-sidebar {

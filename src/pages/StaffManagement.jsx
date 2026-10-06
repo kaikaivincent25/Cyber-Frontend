@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getAllStaff, createStaffAccount } from "../api";
 import "./StaffManagement.css";
 
@@ -20,6 +20,7 @@ export default function StaffManagement() {
   const [form, setForm] = useState(emptyForm);
   const [saveError, setSaveError] = useState("");
   const [saving, setSaving] = useState(false);
+  const formTriggerRef = useRef(null);
 
   function reload() {
     setLoading(true);
@@ -37,9 +38,26 @@ export default function StaffManagement() {
 
     function handleDialogKeyDown(event) {
       if (event.key === "Escape" && !saving) {
-        setShowForm(false);
-        setSaveError("");
-        setForm(emptyForm);
+        closeForm();
+        return;
+      }
+
+      if (event.key === "Tab") {
+        const dialog = document.querySelector(".modal-content");
+        const focusable = dialog?.querySelectorAll(
+          'button:not([disabled]), input:not([disabled]), select:not([disabled])'
+        );
+        if (!focusable?.length) return;
+
+        const firstFocusable = focusable[0];
+        const lastFocusable = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === firstFocusable) {
+          event.preventDefault();
+          lastFocusable.focus();
+        } else if (!event.shiftKey && document.activeElement === lastFocusable) {
+          event.preventDefault();
+          firstFocusable.focus();
+        }
       }
     }
 
@@ -56,6 +74,7 @@ export default function StaffManagement() {
     setShowForm(false);
     setSaveError("");
     setForm(emptyForm);
+    formTriggerRef.current?.focus();
   }
 
   async function handleCreate(e) {
@@ -67,6 +86,7 @@ export default function StaffManagement() {
       setStaff((prev) => [created, ...prev]);
       setForm(emptyForm);
       setShowForm(false);
+      formTriggerRef.current?.focus();
     } catch (err) {
       setSaveError(err.message || "Failed to create account.");
     } finally {
@@ -99,8 +119,14 @@ export default function StaffManagement() {
             <p className="staff-subtitle">Manage who can access your café workspace.</p>
           </div>
           <button
+            type="button"
             className="btn-primary"
-            onClick={() => { setForm(emptyForm); setSaveError(""); setShowForm(true); }}
+            onClick={(event) => {
+              formTriggerRef.current = event.currentTarget;
+              setForm(emptyForm);
+              setSaveError("");
+              setShowForm(true);
+            }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -161,7 +187,7 @@ export default function StaffManagement() {
               <h2 id="staff-directory-title" className="directory-title">Team Directory</h2>
               <p className="directory-subtitle">Find an account by name, email, or phone number.</p>
             </div>
-            <button className="btn-ghost" onClick={reload} disabled={loading} aria-label="Refresh list">
+            <button type="button" className="btn-ghost" onClick={reload} disabled={loading} aria-label="Refresh list">
               <svg className={loading ? "spin" : ""} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="23 4 23 10 17 10"></polyline>
                 <polyline points="1 20 1 14 7 14"></polyline>
@@ -216,7 +242,7 @@ export default function StaffManagement() {
                   <line x1="12" y1="16" x2="12.01" y2="16"></line>
                 </svg>
                 <span>{error}</span>
-                <button className="btn-secondary btn-sm" onClick={reload}>Try Again</button>
+                  <button type="button" className="btn-secondary btn-sm" onClick={reload}>Try Again</button>
               </div>
             )}
             
@@ -242,7 +268,18 @@ export default function StaffManagement() {
                 <h3>{staff.length === 0 ? "No staff accounts yet" : "No matching team members"}</h3>
                 <p>{staff.length === 0 ? "Add an account to give a teammate access to the workspace." : "Try a different search or role filter."}</p>
                 {staff.length === 0 && (
-                  <button className="btn-primary mt-4" onClick={() => setShowForm(true)}>Add First Staff Member</button>
+                  <button
+                    type="button"
+                    className="btn-primary mt-4"
+                    onClick={(event) => {
+                      formTriggerRef.current = event.currentTarget;
+                      setForm(emptyForm);
+                      setSaveError("");
+                      setShowForm(true);
+                    }}
+                  >
+                    Add first staff member
+                  </button>
                 )}
               </div>
             )}
@@ -289,7 +326,7 @@ export default function StaffManagement() {
         {/* Creation Modal */}
         {showForm && (
           <div className="modal-backdrop" onMouseDown={(event) => { if (event.target === event.currentTarget) closeForm(); }}>
-            <dialog className="modal-content" open aria-modal="true" aria-labelledby="staff-dialog-title">
+            <section className="modal-content" role="dialog" aria-modal="true" aria-labelledby="staff-dialog-title" tabIndex={-1}>
               
               <div className="modal-header">
                 <div>
@@ -347,7 +384,7 @@ export default function StaffManagement() {
                   </button>
                 </div>
               </form>
-            </dialog>
+            </section>
           </div>
         )}
       </div>

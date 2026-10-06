@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useCallback, useState, useEffect } from "react";
+import { getStaffMessages, sendStaffMessage } from "../api";
+import ChatPanel from "./ChatPanel";
 import StatusBadge from "./Statusbadge";
 import "./RequestDetailDrawer.css";
 
@@ -33,6 +35,11 @@ export default function RequestDetailDrawer({
   const [actionError, setActionError] = useState("");
 
   const nextStatuses = TRANSITIONS[request.status] || [];
+  const fetchMessages = useCallback(() => getStaffMessages(request.id), [request.id]);
+  const sendMessage = useCallback(
+    (body) => sendStaffMessage(request.id, body),
+    [request.id],
+  );
 
   // Allow closing the drawer with the Escape key
   useEffect(() => {
@@ -191,6 +198,17 @@ export default function RequestDetailDrawer({
             >
               {saving ? "Saving..." : "Save Fees"}
             </button>
+          </div>
+
+          <div className="drawer-section">
+            <h3 className="section-label">Conversation</h3>
+            <div className="chat-container">
+              <ChatPanel
+                fetchMessages={fetchMessages}
+                sendMessage={sendMessage}
+                isMine={(message) => message.sender_staff_id === currentUser?.id}
+              />
+            </div>
           </div>
 
         </div>

@@ -27,7 +27,7 @@ export default function DashboardLayout() {
         </div>
         
         <nav className="dashboard-nav">
-          <span className="nav-group-label">Menu</span>
+          {/*<span className="nav-group-label">Menu</span> */}
           {visibleNavItems.map((item) => (
             <NavLink
               key={item.path}

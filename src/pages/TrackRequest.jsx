@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { trackRequest } from "../api"; //[cite: 1]
+import { getGuestMessages, sendGuestMessage, trackRequest } from "../api"; //[cite: 1]
+import ChatPanel from "../components/ChatPanel";
 import "./TrackRequest.css";
 
 const STATUS_LABELS = {
@@ -26,6 +27,15 @@ export default function TrackRequest() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+  const fetchMessages = useCallback(
+    () => getGuestMessages(result.id, result.tracking_code),
+    [result?.id, result?.tracking_code],
+  );
+  const sendMessage = useCallback(
+    (body) => sendGuestMessage(result.id, result.tracking_code, body),
+    [result?.id, result?.tracking_code],
+  );
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -110,6 +120,17 @@ export default function TrackRequest() {
                 </div>
               </div>
             </div>
+
+            <section className="track-chat-section" aria-labelledby="track-chat-heading">
+              <h3 id="track-chat-heading">Message the service team</h3>
+              <div>
+                <ChatPanel
+                  fetchMessages={fetchMessages}
+                  sendMessage={sendMessage}
+                  isMine={(message) => message.is_from_guest}
+                />
+              </div>
+            </section>
             
             {/* Future Placeholder for Guest Chat System */}
             {result.status === 'awaiting_payment' && (
